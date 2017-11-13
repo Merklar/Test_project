@@ -6,6 +6,11 @@ using strange.extensions.context.api;
 
 public class SignalContext : MVCSContext
 {
+    public static OnFigurePressedSignal OnFigurePressedSignal { get; private set; }
+    public static OnFigureUpSignal OnFigureUpSignal { get; private set; }
+    public static OnStartDragSignal OnStartDragSignal { get; private set; }
+
+
     public SignalContext (MonoBehaviour contextView): base(contextView, ContextStartupFlags.MANUAL_MAPPING)
     {
 
@@ -24,6 +29,9 @@ public class SignalContext : MVCSContext
         base.Launch();
 
         var startSignal = injectionBinder.GetInstance<AppStartSignal>();
+        OnFigurePressedSignal = injectionBinder.GetInstance<OnFigurePressedSignal>();
+        OnFigureUpSignal = injectionBinder.GetInstance<OnFigureUpSignal>();
+        OnStartDragSignal = injectionBinder.GetInstance<OnStartDragSignal>();
         startSignal.Dispatch();
     }
 

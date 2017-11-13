@@ -45,7 +45,6 @@ public class SpawnBoxScript : MonoBehaviour
                 GameObject _currGO = Instantiate(boxList[i], transform.position, Quaternion.Euler(x: 0f, y: 0f, z: angle));
                 _currGO.transform.localScale = new Vector3(0.7f, 0.7f, 0);
                 _currGO.transform.parent = _go.transform;
-                //_go.GetComponent<GridLayoutGroup>().
                 _currGO.transform.localPosition = new Vector3(0f, 0f, 0f);
             }
         }

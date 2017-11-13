@@ -16,5 +16,6 @@ public class MainContext : SignalContext
         commandBinder.Bind<AppStartSignal>().To<AppStartCommand>().Once();
         commandBinder.Bind<OnFigurePressedSignal>().To<OnFigurePressCommand>();
         commandBinder.Bind<OnFigureUpSignal>().To<OnFigureUpCommand>();
+        commandBinder.Bind<OnStartDragSignal>().To<StartDragCommand>();
     }
 }

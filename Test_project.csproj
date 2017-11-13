@@ -91,11 +91,13 @@
     <Compile Include="Assets\Scripts\IoC\Commands\AppStartCommand.cs" />
     <Compile Include="Assets\Scripts\IoC\Commands\OnFigurePressCommand.cs" />
     <Compile Include="Assets\Scripts\IoC\Commands\OnFigureUpCommand.cs" />
+    <Compile Include="Assets\Scripts\IoC\Commands\StartDragCommand.cs" />
     <Compile Include="Assets\Scripts\IoC\MainContext.cs" />
     <Compile Include="Assets\Scripts\IoC\MainContexView.cs" />
     <Compile Include="Assets\Scripts\IoC\SignalContext.cs" />
     <Compile Include="Assets\Scripts\IoC\Signals.cs" />
     <Compile Include="Assets\Scripts\Model\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Model\GridScript.cs" />
     <Compile Include="Assets\Scripts\View\SpawnBoxScript.cs" />
     <Compile Include="Assets\StrangeIoC\examples\Assets\scripts\multiplecontexts\game\controller\GameEvent.cs" />
     <Compile Include="Assets\StrangeIoC\examples\Assets\scripts\multiplecontexts\game\controller\GameOverCommand.cs" />
