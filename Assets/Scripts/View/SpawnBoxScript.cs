@@ -6,17 +6,36 @@ using UnityEngine.UI;
 public class SpawnBoxScript : MonoBehaviour
 {
 
-    public GameObject[] boxList;
+    public  GameManager GameManager { get; private set; }
 
+    public GameObject[] boxList;
     private GameObject[] FigureContainerCollections;
 
     void Start()
     {
+        GameManager = GetComponent<GameManager>();
         FigureContainerCollections = GameObject.FindGameObjectsWithTag("FigureContainer");
         SpawnNewBox();
     }
 
-    public void SpawnNewBox()
+    public void CheakAndSpawn()
+    {
+        byte _childCount = 0;
+        foreach (GameObject _go in FigureContainerCollections)
+        {
+            if (_go.transform.childCount != 0)
+            {
+                _childCount++;
+            }
+        }
+        if (_childCount == 0)
+        {
+            GameManager.EnableFigureCollection.Clear();
+            SpawnNewBox();
+        }
+    }
+
+    private void SpawnNewBox()
     {
         foreach (GameObject _go in FigureContainerCollections)
         {
@@ -46,6 +65,7 @@ public class SpawnBoxScript : MonoBehaviour
                 _currGO.transform.localScale = new Vector3(0.7f, 0.7f, 0);
                 _currGO.transform.parent = _go.transform;
                 _currGO.transform.localPosition = new Vector3(0f, 0f, 0f);
+                GameManager.EnableFigureCollection.Add(_currGO.transform);
             }
         }
     }

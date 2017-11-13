@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GridScript : MonoBehaviour {
 
-    public static int gridWeight = 10;
+    public static int gridWidth = 10;
     public static int gridHeight = 10;
 
-    public Transform[,] grid = new Transform[gridWeight, gridHeight];
+    public Transform[,] grid = new Transform[gridWidth, gridHeight];
 
     public Vector2 Round(Vector2 v)
     {
@@ -16,65 +16,74 @@ public class GridScript : MonoBehaviour {
 
     public bool IsInsideGrid(Vector2 pos)
     {
-        return (((int)pos.x >= 0) && ((int)pos.x < gridWeight) && ((int)pos.y >= 0));
+        return (((int)pos.x >= 0) && ((int)pos.x < gridWidth) && ((int)pos.y >= 0) && ((int)pos.y < gridHeight));
     }
 
-    public void Delete(int y)
+    public void DeleteY(int y)
     {
-        for (int x = 0; x < gridWeight; x++)
+        for (int x = 0; x < gridWidth; ++x)
         {
             Destroy(grid[x, y].gameObject);
             grid[x, y] = null;
         }
     }
-
-    public bool IsFull(int y)
+    public void DeleteX(int x)
     {
-        for (int x = 0; x < gridWeight; x++)
+        for (int y = 0; y < gridHeight; ++y)
+        {
+            Destroy(grid[x, y].gameObject);
+            grid[x, y] = null;
+        }
+    }
+    public bool IsFullY(int y)
+    {
+        for (int x = 0; x < gridWidth; ++x)
             if (grid[x, y] == null)
+            {
                 return false;
+            }
+        return true;
+    }
+
+    public bool IsFullX(int x)
+    {
+        for (int y = 0; y < gridHeight; ++y)
+            if (grid[x, y] == null)
+            {
+                return false;
+            }
         return true;
     }
 
     public void DeleteRow()
     {
-        for (int y = 0; y < gridHeight; y++)
+        for (int y = 0; y < gridHeight; ++y)
         {
-            if (IsFull(y))
+            if (IsFullY(y))
             {
-                Delete(y);
-                RowDownAll(y + 1);
-                y--;
+                DeleteY(y);
+                --y;
             }
         }
     }
 
-    public void RowDown(int y)
+    public void DeleteColone()
     {
-        for (int x = 0; x < gridWeight; x++)
+        for (int x = 0; x < gridWidth; ++x)
         {
-            if (grid[x, y] != null)
+            if (IsFullX(x))
             {
-                grid[x, y - 1] = grid[x, y];
-                grid[x, y] = null;
-                grid[x, y - 1].position += new Vector3(0, -1, 0);
+                DeleteX(x);
+                --x;
             }
         }
-    }
-
-    public void RowDownAll(int y)
-    {
-        for (int i = y; i < gridHeight; i++)
-            RowDown(i);
     }
 
     public bool OnCheckValidFigurePos(Transform _transform)
     {
         foreach (Transform subFigure in _transform)
         {
-            Debug.Log("check Child");
             Vector2 pos = Round(subFigure.position);
-            Debug.Log(pos);
             if (IsInsideGrid(pos) == false)
             {
                 return false;
@@ -91,7 +100,7 @@ public class GridScript : MonoBehaviour {
     public void GridUpdate(Transform _figure)
     {
         for (int y = 0; y < gridHeight; ++y)
-            for (int x = 0; x < gridWeight; ++x)
+            for (int x = 0; x < gridWidth; ++x)
                 if (grid[x, y] != null)
                     if (grid[x, y].parent == _figure)
                         grid[x, y] = null;
@@ -102,16 +111,46 @@ public class GridScript : MonoBehaviour {
             child.position = v;
             grid[(int)v.x, (int)v.y] = child;
         }
+
+        DeleteRow();
+        DeleteColone();
     }
 
     public Transform GetTransformOnPosition(Vector2 _position)
     {
-        if (_position.y > gridWeight - 1)
+        if (_position.y > gridWidth - 1)
         {
             return null;
         } else
         {
             return grid[(int)_position.x, (int)_position.y];
         }
+    }
+
+    public bool OnGameOverCheck(List<Transform> _figures)
+    {
+       foreach (Transform figure in _figures)
+        {
+            Vector2 oldPosition = figure.position;
+            Vector3 oldScale = figure.localScale;
+            figure.localScale = Vector3.one;
+            for (int y = 0; y < gridHeight; ++y)
+            {
+                for (int x = 0; x < gridWidth; ++x)
+                {
+
+                    figure.position = new Vector2(x, y);
+                    if (OnCheckValidFigurePos(figure) == true)
+                    {
+                        figure.position = oldPosition;
+                        figure.localScale = oldScale;
+                        return true;
+                    }
+                }
+            }
+            figure.position = oldPosition;
+            figure.localScale = oldScale;
+        }
+        return false;
     }
 }
