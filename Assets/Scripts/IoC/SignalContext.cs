@@ -9,6 +9,8 @@ public class SignalContext : MVCSContext
     public static OnFigurePressedSignal OnFigurePressedSignal { get; private set; }
     public static OnFigureUpSignal OnFigureUpSignal { get; private set; }
     public static OnStartDragSignal OnStartDragSignal { get; private set; }
+    public static OnPlaySoundSignal OnPlaySoundSignal { get; private set; }
+    public static GameOverSignal GameOverSignal { get; private set; }
 
 
     public SignalContext (MonoBehaviour contextView): base(contextView, ContextStartupFlags.MANUAL_MAPPING)
@@ -32,6 +34,8 @@ public class SignalContext : MVCSContext
         OnFigurePressedSignal = injectionBinder.GetInstance<OnFigurePressedSignal>();
         OnFigureUpSignal = injectionBinder.GetInstance<OnFigureUpSignal>();
         OnStartDragSignal = injectionBinder.GetInstance<OnStartDragSignal>();
+        OnPlaySoundSignal = injectionBinder.GetInstance<OnPlaySoundSignal>();
+        GameOverSignal = injectionBinder.GetInstance<GameOverSignal>();
         startSignal.Dispatch();
     }
 

@@ -17,5 +17,7 @@ public class MainContext : SignalContext
         commandBinder.Bind<OnFigurePressedSignal>().To<OnFigurePressCommand>();
         commandBinder.Bind<OnFigureUpSignal>().To<OnFigureUpCommand>();
         commandBinder.Bind<OnStartDragSignal>().To<StartDragCommand>();
+        commandBinder.Bind<OnPlaySoundSignal>().To<PlaySoundCommand>();
+        commandBinder.Bind<GameOverSignal>().To<GameOverCommand>();
     }
 }

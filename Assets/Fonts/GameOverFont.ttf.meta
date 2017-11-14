@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 9f4241910cb4d8943853d0e45fcb4754
+timeCreated: 1510651734
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Astakhov Dished ChAoS!
+  fontNames:
+  - Astakhov Dished ChAoS!
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

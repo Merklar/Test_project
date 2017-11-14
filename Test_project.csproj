@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.1.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -89,16 +91,22 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Controller\ControllerManager.cs" />
     <Compile Include="Assets\Scripts\IoC\Commands\AppStartCommand.cs" />
+    <Compile Include="Assets\Scripts\IoC\Commands\GameOverCommand.cs" />
     <Compile Include="Assets\Scripts\IoC\Commands\OnFigurePressCommand.cs" />
     <Compile Include="Assets\Scripts\IoC\Commands\OnFigureUpCommand.cs" />
+    <Compile Include="Assets\Scripts\IoC\Commands\PlaySoundCommand.cs" />
     <Compile Include="Assets\Scripts\IoC\Commands\StartDragCommand.cs" />
     <Compile Include="Assets\Scripts\IoC\MainContext.cs" />
     <Compile Include="Assets\Scripts\IoC\MainContexView.cs" />
     <Compile Include="Assets\Scripts\IoC\SignalContext.cs" />
     <Compile Include="Assets\Scripts\IoC\Signals.cs" />
+    <Compile Include="Assets\Scripts\Model\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Model\GameManager.cs" />
     <Compile Include="Assets\Scripts\Model\GridScript.cs" />
+    <Compile Include="Assets\Scripts\Tools\Tween.cs" />
+    <Compile Include="Assets\Scripts\Tools\Tweener.cs" />
     <Compile Include="Assets\Scripts\View\SpawnBoxScript.cs" />
+    <Compile Include="Assets\Scripts\View\UIScript.cs" />
     <Compile Include="Assets\StrangeIoC\examples\Assets\scripts\multiplecontexts\game\controller\GameEvent.cs" />
     <Compile Include="Assets\StrangeIoC\examples\Assets\scripts\multiplecontexts\game\controller\GameOverCommand.cs" />
     <Compile Include="Assets\StrangeIoC\examples\Assets\scripts\multiplecontexts\game\controller\RemoveSocialContextCommand.cs" />

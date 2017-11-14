@@ -26,6 +26,7 @@ public class GridScript : MonoBehaviour {
             Destroy(grid[x, y].gameObject);
             grid[x, y] = null;
         }
+        SignalContext.OnPlaySoundSignal.Dispatch(GameManager.DROP_SOUND);
     }
     public void DeleteX(int x)
     {
@@ -34,6 +35,7 @@ public class GridScript : MonoBehaviour {
             Destroy(grid[x, y].gameObject);
             grid[x, y] = null;
         }
+        SignalContext.OnPlaySoundSignal.Dispatch(GameManager.DROP_SOUND);
     }
     public bool IsFullY(int y)
     {
