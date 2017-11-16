@@ -70,7 +70,7 @@ public class ControllerManager : MonoBehaviour {
                 SignalContext.OnFigureUpSignal.Dispatch();
                 OnFigureUp = false;
 
-            } else if ((Input.GetTouch(0).phase == TouchPhase.Ended))
+            } else if ((Input.touchCount > 0) && (Input.GetTouch(0).phase == TouchPhase.Ended))
             {
                 SignalContext.OnFigureUpSignal.Dispatch();
                 OnFigureUp = false;

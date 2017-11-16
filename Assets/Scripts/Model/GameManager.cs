@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour {
                 SpawnBoxScript.CheakAndSpawn();
                 EnableFigureCollection.Remove(CurrentTransform);
                 SignalContext.OnPlaySoundSignal.Dispatch(CLICK_SOUND);
-                ClearEmptyFigure();
+                //ClearEmptyFigure();
                 if (GridScript.OnGameOverCheck(EnableFigureCollection) == false)
                  {
                     OnGameOver();
